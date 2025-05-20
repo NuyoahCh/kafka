@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * @description:
  */
 @Service
-public class CountService {
+public class DecoupleCountService {
     public void incrManyTimes(int n) {
         int x = 0;
         for (int i = 0; i < n; i++) {

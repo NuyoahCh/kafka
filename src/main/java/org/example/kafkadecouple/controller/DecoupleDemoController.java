@@ -1,9 +1,7 @@
 package org.example.kafkadecouple.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-import org.example.kafkadecouple.dto.IncrCountReq;
-import org.example.kafkadecouple.kafka.CountService;
+import org.example.kafkadecouple.dto.DecoupleIncrCountReq;
+import org.example.kafkadecouple.kafka.DecoupleCountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -21,22 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/demo")
-public class DemoController {
+public class DecoupleDemoController {
 
     @Autowired
-    private CountService countService;
+    private DecoupleCountService countService;
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
     @PostMapping("/decoupling")
-    public ResponseEntity<?> directInvoke(@RequestBody IncrCountReq data) {
+    public ResponseEntity<?> directInvoke(@RequestBody DecoupleIncrCountReq data) {
         countService.incrManyTimes(data.getCount());
         return ResponseEntity.ok(createResponse(0, "ok"));
     }
 
     @PostMapping(value = "/decoupling_with_mq", consumes = "application/json; charset=utf-8")
-    public ResponseEntity<?> decouplingWithMQ(@RequestBody IncrCountReq data) {
+    public ResponseEntity<?> decouplingWithMQ(@RequestBody DecoupleIncrCountReq data) {
         String msg = "trigger";  // 这里的消息可以根据业务改
         kafkaTemplate.send("tp-mq-decoupling", msg);
         return ResponseEntity.ok(createResponse(0, "ok"));

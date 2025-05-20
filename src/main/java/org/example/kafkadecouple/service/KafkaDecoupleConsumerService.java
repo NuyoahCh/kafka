@@ -2,7 +2,7 @@ package org.example.kafkadecouple.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.example.kafkadecouple.kafka.CountService;
+import org.example.kafkadecouple.kafka.DecoupleCountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
@@ -16,10 +16,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class KafkaConsumerService {
+public class KafkaDecoupleConsumerService {
 
     @Autowired
-    private CountService countService;
+    private DecoupleCountService countService;
 
     @KafkaListener(topics = "tp-mq-decoupling", groupId = "TEST_GROUP")
     public void consume(ConsumerRecord<String, String> record, Acknowledgment ack) {

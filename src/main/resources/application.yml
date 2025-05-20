@@ -9,7 +9,7 @@ spring:
       auto-offset-reset: earliest
       enable-auto-commit: false
     listener:
-      ack-mode: manual
+      ack-mode: manual_immediate
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer

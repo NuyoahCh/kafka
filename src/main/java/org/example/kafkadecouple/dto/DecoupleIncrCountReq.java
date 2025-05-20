@@ -6,12 +6,12 @@ package org.example.kafkadecouple.dto;
  * @create: 2025-05-20
  * @description:
  */
-public class IncrCountReq {
+public class DecoupleIncrCountReq {
     private int count;
 
-    public IncrCountReq() {}
+    public DecoupleIncrCountReq() {}
 
-    public IncrCountReq(int count) {
+    public DecoupleIncrCountReq(int count) {
         this.count = count;
     }
 
