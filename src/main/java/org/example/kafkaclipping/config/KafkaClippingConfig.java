@@ -20,7 +20,7 @@ import org.springframework.kafka.listener.ContainerProperties;
  */
 @Configuration
 @EnableKafka
-public class KafkaConfig {
+public class KafkaClippingConfig {
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
